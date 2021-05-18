@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { increment, decrement, incrementx } from './actions/index';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { increment, decrement, incrementx } from "./actions/index";
+import { connect } from "react-redux";
+
+console.log("hej");
 
 class App extends Component {
   input;
@@ -15,25 +17,28 @@ class App extends Component {
           <span>{this.props.numprop}</span>
         </div>
         <div>
-          <input type="number" ref={node => this.input = node}/>
-          <button onClick={() => {this.props.incx(this.input.value)}}>custom inc</button>
+          <input type="number" ref={(node) => (this.input = node)} />
+          <button
+            onClick={() => {
+              this.props.incx(this.input.value);
+            }}
+          >
+            custom inc
+          </button>
         </div>
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  numprop: state.num
-})
+const mapStateToProps = (state) => ({
+  numprop: state.num,
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   inc: () => dispatch(increment()),
-  incx: x => dispatch(incrementx(x)),
-  dec: () => dispatch(decrement())
-})
+  incx: (x) => dispatch(incrementx(x)),
+  dec: () => dispatch(decrement()),
+});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
